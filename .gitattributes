@@ -1,0 +1,17 @@
+# Handle line endings automatically
+* text=auto
+
+# Ensure correct diff for TypeScript and JavaScript
+*.ts diff=javascript
+*.tsx diff=javascript
+
+# Treat these as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.pdf binary
+
+# Ensure UTF-8 encoding
+* text eol=lf

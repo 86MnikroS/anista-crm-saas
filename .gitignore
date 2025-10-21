@@ -9,10 +9,22 @@ dist/
 .env.local
 .env.*.local
 
-# editor
+# editor / IDE
 .idea/
 .vscode/
 
-# misc
+# macOS system files
 .DS_Store
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# firebase local cache
+.firebase/
+firestore-debug.log
+ui-debug.log
+
+# misc
 *.log
