@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "@/shared/lib/counterSlice";
 import userReducer from "@/entities/user/model/userSlice";
 import dateReducer from "@/features/date-navigator/model/dateSlice";
+import visitsReducer from "@/entities/visit/model/visitSlice";
 
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
         counter: counterReducer,
         user: userReducer,
         date: dateReducer,
+        visits: visitsReducer,
     },
 });
 
