@@ -3,8 +3,17 @@ import { AddVisitButton } from "@/features/add-visit/ui/AddVisitButton";
 import { AddClientButton } from "@/features/add-client/ui/AddClientButton";
 import { VisitCard } from "@/entities/visit/ui/VisitCard";
 import { LiveClock } from "@/shared/ui/LiveClock";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/providers/store";
+import {LogoutButton} from "@/shared/ui/LogOutButton";
 
 export const DashboardPage: React.FC = () => {
+    const user = useSelector((state: RootState) => state.user.currentUser);
+
+    if (!user) {
+      return <div className="text-center mt-10 text-gray-500">Не авторизован</div>;
+    }
+
     const now = new Date();
     const formattedDate = now.toLocaleDateString("ru-RU", {
       day: "2-digit",
@@ -20,6 +29,9 @@ export const DashboardPage: React.FC = () => {
 
     return (
         <div className="p-6 max-w-2xl mx-auto">
+            <h1 className="text-2xl font-semibold mb-4">
+                Привет, {user.name}! 👋
+            </h1>
             <h1 className="text-3xl sm:text-2xl font-bold mb-6 text-center sm:text-left">
               Сегодня, {formattedDate} — <LiveClock />
             </h1>
@@ -34,6 +46,8 @@ export const DashboardPage: React.FC = () => {
                     <VisitCard key={v.phone} {...v} />
                 ))}
             </div>
+            <LogoutButton />
+
         </div>
     );
 };

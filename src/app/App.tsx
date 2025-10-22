@@ -1,12 +1,6 @@
-import { BrowserRouter } from "react-router-dom";
-import { RoutesApp } from "./routes";
+import React from "react";
+import { AppRoutes } from "@/app/routes";
 
-export const App = () => (
-    <BrowserRouter>
-        <div className="min-h-screen bg-gray-50 p-4">
-            <RoutesApp />
-        </div>
-    </BrowserRouter>
-);
-
-export default App;
+export const App = () => {
+    return <AppRoutes />; // тут уже есть RouterProvider
+};
