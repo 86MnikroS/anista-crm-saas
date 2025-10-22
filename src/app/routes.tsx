@@ -1,12 +1,18 @@
-import { Routes, Route } from "react-router-dom";
-import { Dashboard } from "@/features/dashboard/Dashboard";
-import { ClientsPage } from "@/pages/ClientsPage";
-import { SettingsPage } from "@/pages/SettingsPage";
+import {Routes, Route} from "react-router-dom";
+import {DashboardPage} from "@/pages/DashboardPage";
+import {ClientsPage} from "@/pages/ClientsPage";
+import {SettingsPage} from "@/pages/SettingsPage";
+
+const routes = [
+    { path: "/", element: <DashboardPage /> },
+    { path: "/clients", element: <ClientsPage /> },
+    { path: "/settings", element: <SettingsPage /> },
+];
 
 export const RoutesApp = () => (
     <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/clients" element={<ClientsPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+        {routes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+        ))}
     </Routes>
 );
