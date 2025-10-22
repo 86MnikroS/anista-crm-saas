@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "@/entities/user/model/userSlice";
 import { useNavigate } from "react-router-dom";
+// @ts-ignore
 import AnistaLogo from "@/assets/images/AnistaLogo.png";
 
 const USERS: Record<string, "admin" | "master"> = {

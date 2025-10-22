@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "@/app/providers/store";
 import {Header} from "@/shared/ui/Header"
 import {LogoutButton} from "@/shared/ui/LogOutButton";
+import {DateNavigator} from "@/features/date-navigator/ui/DateNavigator";
 
 export const DashboardPage: React.FC = () => {
     const user = useSelector((state: RootState) => state.user.currentUser);
@@ -34,12 +35,19 @@ export const DashboardPage: React.FC = () => {
             <div className="p-6 max-w-3xl mx-auto">
                 {/* остальной контент */}
             </div>
-            <h1 className="text-2xl font-semibold mb-4">
-                Привет, {user.name}! 👋
-            </h1>
-            <h1 className="text-3xl sm:text-2xl font-bold mb-6 text-center sm:text-left">
-                Сегодня, {formattedDate} — <LiveClock/>
-            </h1>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6">
+                <div className="text-center sm:text-left">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                        Привет, {user.name}! 👋
+                    </h1>
+                    <p className="text-gray-500 mt-1">
+                        <LiveClock/> — <span className="capitalize">{formattedDate}</span>
+                    </p>
+                </div>
+
+                {/* Навигация по дате */}
+                <DateNavigator/>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-8 w-full sm:w-auto">
                 <AddVisitButton/>
