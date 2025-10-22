@@ -1,44 +1,49 @@
 import React from "react";
-import { AddVisitButton } from "@/features/add-visit/ui/AddVisitButton";
-import { AddClientButton } from "@/features/add-client/ui/AddClientButton";
-import { VisitCard } from "@/entities/visit/ui/VisitCard";
-import { LiveClock } from "@/shared/ui/LiveClock";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/providers/store";
+import {AddVisitButton} from "@/features/add-visit/ui/AddVisitButton";
+import {AddClientButton} from "@/features/add-client/ui/AddClientButton";
+import {VisitCard} from "@/entities/visit/ui/VisitCard";
+import {LiveClock} from "@/shared/ui/LiveClock";
+import {useSelector} from "react-redux";
+import {RootState} from "@/app/providers/store";
+import {Header} from "@/shared/ui/Header"
 import {LogoutButton} from "@/shared/ui/LogOutButton";
 
 export const DashboardPage: React.FC = () => {
     const user = useSelector((state: RootState) => state.user.currentUser);
 
     if (!user) {
-      return <div className="text-center mt-10 text-gray-500">Не авторизован</div>;
+        return <div className="text-center mt-10 text-gray-500">Не авторизован</div>;
     }
 
     const now = new Date();
     const formattedDate = now.toLocaleDateString("ru-RU", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
     });
 
     const visits = [
-        { name: "Ольга", time: "09:30", service: "Массаж спины", phone: "050-1234567" },
-        { name: "Марина", time: "11:00", service: "Антицеллюлитный", phone: "054-9876543" },
-        { name: "Юлия", time: "14:00", service: "Расслабляющий массаж", phone: "052-7654321" },
+        {name: "Ольга", time: "09:30", service: "Массаж спины", phone: "050-1234567"},
+        {name: "Марина", time: "11:00", service: "Антицеллюлитный", phone: "054-9876543"},
+        {name: "Юлия", time: "14:00", service: "Расслабляющий массаж", phone: "052-7654321"},
     ];
 
     return (
         <div className="p-6 max-w-2xl mx-auto">
+            <Header/>
+            <div className="p-6 max-w-3xl mx-auto">
+                {/* остальной контент */}
+            </div>
             <h1 className="text-2xl font-semibold mb-4">
                 Привет, {user.name}! 👋
             </h1>
             <h1 className="text-3xl sm:text-2xl font-bold mb-6 text-center sm:text-left">
-              Сегодня, {formattedDate} — <LiveClock />
+                Сегодня, {formattedDate} — <LiveClock/>
             </h1>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-8 w-full sm:w-auto">
-                <AddVisitButton />
-                <AddClientButton />
+                <AddVisitButton/>
+                <AddClientButton/>
             </div>
 
             <div className="space-y-3">
@@ -46,7 +51,6 @@ export const DashboardPage: React.FC = () => {
                     <VisitCard key={v.phone} {...v} />
                 ))}
             </div>
-            <LogoutButton />
 
         </div>
     );
