@@ -1,37 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface DateState {
-    currentDate: string; // в формате YYYY-MM-DD
+    selectedDate: string; // формат YYYY-MM-DD
 }
 
-const today = new Date().toISOString().split("T")[0];
-
 const initialState: DateState = {
-    currentDate: today,
+    selectedDate: new Date().toISOString().split("T")[0],
 };
 
 const dateSlice = createSlice({
     name: "date",
     initialState,
     reducers: {
+        setSelectedDate: (state, action: PayloadAction<string>) => {
+            state.selectedDate = action.payload;
+        },
         nextDay: (state) => {
-            const d = new Date(state.currentDate);
-            d.setDate(d.getDate() + 1);
-            state.currentDate = d.toISOString().split("T")[0];
+            const current = new Date(state.selectedDate);
+            current.setDate(current.getDate() + 1);
+            state.selectedDate = current.toISOString().split("T")[0];
         },
         prevDay: (state) => {
-            const d = new Date(state.currentDate);
-            d.setDate(d.getDate() - 1);
-            state.currentDate = d.toISOString().split("T")[0];
-        },
-        selectDate: (state, action: PayloadAction<string>) => {
-            state.currentDate = action.payload;
-        },
-        resetToday: (state) => {
-            state.currentDate = today;
+            const current = new Date(state.selectedDate);
+            current.setDate(current.getDate() - 1);
+            state.selectedDate = current.toISOString().split("T")[0];
         },
     },
 });
 
-export const { nextDay, prevDay, selectDate, resetToday } = dateSlice.actions;
+export const { setSelectedDate, nextDay, prevDay } = dateSlice.actions;
 export default dateSlice.reducer;
